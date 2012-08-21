@@ -4,8 +4,8 @@ defined('C5_EXECUTE') or die(_("Access Denied."));
 class TomoacCounterBlockController extends BlockController {
 
 	protected $btTable = 'btTomoacCounter';
-	protected $btInterfaceWidth = "600";
-	protected $btInterfaceHeight = "260";
+	protected $btInterfaceWidth = "300";
+	protected $btInterfaceHeight = "100";
 	
 	public function getBlockTypeDescription() {
 		return t('Access counter by tomoac');
@@ -15,21 +15,17 @@ class TomoacCounterBlockController extends BlockController {
 		return t('Tomoac Counter');
 	}
 
-	function view(){
-//		error_log('view bid='.$this->bID,0);
+	function view() {
+		error_log('view bid='.$this->bID,0);
 
-		$page = Page::getCurrentPage();
-		$url = BASE_URL . DIR_REL . $page->getCollectionPath();
-
-		if(intval($this->bID) == 0)
-			return;
+		$db = Loader::db();
+		$sql = 'UPDATE btTomoacCounter SET counter=? WHERE bid=?';
+		$val = array( $this->counter+1, $this->bID);
+		$db->query($sql, $val);
 	}
-
+/*
 	function save( $data ) {
-//		error_log('save bid='.$this->bID,0);
-
-		$bID = $this->bID;
-
-		parent::save($arg);
+		parent::save($data);
 	}
+*/
 }

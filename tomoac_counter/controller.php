@@ -5,7 +5,7 @@ class TomoacCounterPackage extends Package {
 
      protected $pkgHandle = 'tomoac_counter';
      protected $appVersionRequired = '5.4.0';
-     protected $pkgVersion = '0.1.0';
+     protected $pkgVersion = '0.1.1';
 
      public function getPackageDescription() {
           return t('Access counter by tomoac');
